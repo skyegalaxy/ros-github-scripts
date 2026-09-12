@@ -5,26 +5,10 @@ Utility scripts to ease management of GitHub projects for ROS / ROS 2
 
 These are Python command-line tools. The recommended way to install them is with
 [`uv`](https://docs.astral.sh/uv/), which puts the commands on your PATH inside an
-isolated, uv-managed virtual environment. 
+isolated, uv-managed virtual environment.
 
-After installation you can run the commands directly, without `uv run` prefix
+After installation you can run the commands directly, without a `uv run` prefix
 or manually activating a venv.
-
-### One-shot setup
-
-After cloning this repository, run the bootstrap script. It installs `uv` if it
-is missing and then installs all of the commands:
-
-```
-./ros-ci-setup-venv
-```
-
-If the commands are not found afterwards, run `uv tool update-shell` and restart
-your shell so uv's tool directory is on your PATH.
-
-### Manual install
-
-If you already have `uv` and prefer to run the install step yourself:
 
 ```
 # Note that this is by _path_, it's not the name of a package on PyPI - so substitute as appropriate for your working directory
