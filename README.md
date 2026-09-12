@@ -37,6 +37,9 @@ To upgrade an existing install after pulling new changes, add `--force`:
 uv tool install --force ./ros-github-scripts
 ```
 
+If the commands are not found afterwards, run `uv tool update-shell` and restart
+your shell so uv's tool directory is on your PATH.
+
 [`pipx`](https://pipx.pypa.io/) provides the same isolated-venv behavior if you
 prefer it:
 
@@ -44,7 +47,7 @@ prefer it:
 pipx install ./ros-github-scripts
 ```
 
-A plain `pip install ./ros-github-scripts` also still works, but then you are
+Standard `pip install ./ros-github-scripts` also still works, but you are then
 responsible for providing the virtual environment yourself.
 
 
