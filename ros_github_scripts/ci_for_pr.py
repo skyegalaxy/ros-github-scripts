@@ -210,6 +210,28 @@ def validate_and_fetch_pull_list(
     return return_prs
 
 
+def validate_pulls_target(
+    pulls: List[github.PullRequest.PullRequest],
+    target_release: str
+) -> None:
+    """Prompt for confirmation if any PR's base branch does not match the target release."""
+    mismatches = [
+        (pull, pull.base.ref)
+        for pull in pulls
+        if pull.base.ref != target_release
+    ]
+    if not mismatches:
+        return
+
+    print('\n>>> The following PRs target a different branch than the selected release <<<')
+    for pull, base_ref in mismatches:
+        print(f'  {pull.base.repo.full_name}#{pull.number}: {base_ref}')
+    print(f'  Selected target release: {target_release}')
+    answer = input('Continue anyway? [y/N] ').strip().lower()
+    if answer != 'y':
+        panic('Target mismatch, aborting')
+
+
 def format_ci_details(
     *,
     gist_url: Optional[str],
@@ -540,6 +562,9 @@ def main():
         panic(
             'When using --branch and --comment, you must select PRs to comment on either using '
             '--interactive or by providing them using --pulls')
+
+    if parsed.build and chosen_pulls:
+        validate_pulls_target(chosen_pulls, parsed.target)
 
     # Only create a gist if we are triggering a build (not for --test-report only)
     gist_url = None

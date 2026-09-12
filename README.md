@@ -7,7 +7,7 @@ This is a `setuptools`-based python package. To install it and all its dependenc
 
 ```
 # Note that this is by _path_, it's not the name of a package on PyPI - so substitute as appropriate for your working directory
-pip3 install ./ros-github-scripts
+pipx install ./ros-github-scripts
 ```
 
 

@@ -21,7 +21,7 @@ setup(
     long_description=long_description,
     install_requires=[
         'markdown2==2.3.7',
-        'PyGithub==1.56',
+        'PyGithub>=1.59.1,<2',
         'PyYAML>=5',
         'retrying==1.3.3',
         'jenkinsapi==0.3.17',
